@@ -44,7 +44,3 @@ app.use('/', routes());
 
 // Va a correr en este puerto
 app.listen(3001);
-
-//este codigo debe ir descomentado a la hora de subir a her
-
-//token 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
