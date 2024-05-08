@@ -1,0 +1,30 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "admin",
+    "database": "parqueo",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorAliases": false,
+    "timezone": "-06:00",
+    "logging":false
+  },
+  "test": {
+    "username": "postgres",
+    "password": "admin",
+    "database": "parqueo",
+    "host": "127.0.0.1",
+    "timezone": "-06:00",
+
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "admin",
+    "database": "parqueo",
+    "host": "127.0.0.1",
+    "timezone": "-06:00",
+
+    "dialect": "postgres"
+  }
+}
