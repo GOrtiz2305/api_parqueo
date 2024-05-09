@@ -12,7 +12,7 @@ module.exports = (app) => {
     router.get('/ticket/find/:id', ticketController.findById);
     router.post('/ticket/create', ticketController.create);
     router.put('/ticket/pagar', ticketController.update);
-    rputer.put('/ticket/response', ticketController.updateResponse);
+    router.put('/ticket/response', ticketController.updateResponse);
     router.delete('/ticket/delete/:id', ticketController.delete);
 
     app.use('/', router);

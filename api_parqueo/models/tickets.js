@@ -14,15 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     fecha: {
       type: DataTypes.DATE,
-      allowNull: false
+      defaultValue: DataTypes.NOW
     },
     numero_vehiculo: {
       type: DataTypes.STRING(20),
-      allowNull: false
-    },
-    timestamp_entrada: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
+      allowNull: true
     },
     timestamp_salida: {
       type: DataTypes.DATE,
@@ -37,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'PENDIENTE'
     },
     estado2: {
-      type: DataTypes.INT,
+      type: DataTypes.INTEGER,
       defaultValue: 0
     }
   }, {

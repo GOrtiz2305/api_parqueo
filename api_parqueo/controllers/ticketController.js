@@ -26,9 +26,6 @@ module.exports = {
         let datos = req.body //Serializar los datos
         const datos_ingreso = { //Objeto
             centro_comercial: datos.centro_comercial,
-            fecha: moment.now,
-            timestamp_entrada: moment.now,
-            estado: "PENDIENTE",
         };
 
         Tickets.create(datos_ingreso)
