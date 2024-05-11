@@ -21,55 +21,29 @@ module.exports = {
     },
 
     create(req, res) {
-        //Crear
-        //extraer datos de req.body
-        let datos = req.body //Serializar los datos
-        const datos_ingreso = { //Objeto
-            centro_comercial: datos.centro_comercial,
-        };
+        // Extraer datos de req.body
+        let datos = req.body;
 
-        Tickets.create(datos_ingreso)
-            .then(Tickets => {
-                res.send(Tickets);
+        // Crear el ticket en la API1
+        Tickets.create(datos)
+            .then(ticket => {
+                // Enviar los datos del ticket a la API2
+                axios.post('http://localhost:3003/ticket/create', ticket)
+                    .then(response => {
+                        // Si se crea el ticket en la API2 correctamente, enviar la respuesta de la API1
+                        res.send(ticket);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        return res.status(500).json({ error: 'Error al crear el ticket en la API2' });
+                    });
             })
             .catch(error => {
-                console.log(error)
-                return res.status(500).json({ error: 'Error al insertar' });
+                console.error(error);
+                return res.status(500).json({ error: 'Error al insertar el ticket en la API1' });
             });
     },
-
-    /*create(req, res) {
-      // Crear
-      // Extraer datos de req.body
-      let datos = req.body // Serializar los datos
-      const datos_ingreso = { // Objeto
-          centro_comercial: datos.centro_comercial,
-          fecha: datos.fecha,
-          numero_vehiculo: datos.numero_vehiculo,
-          timestamp_entrada: datos.timestamp_entrada,
-          estado: "PENDIENTE",
-      };
-  
-      // Crear el registro en Sequelize
-      Tickets.create(datos_ingreso)
-      .then(async (Tickets) => {
-          try {
-              // Hacer una solicitud HTTP POST a la API de Mongoose
-              await axios.post('http://localhost:3001/logs_crear', datos);
-  
-              // Enviar la respuesta de Sequelize
-              res.send(Tickets);
-          } catch (error) {
-              console.error("Error al hacer la solicitud a la API de Mongoose:", error);
-              res.status(500).json({ error: 'Error al insertar' });
-          }
-      })
-      .catch(error => {
-          console.log(error);
-          return res.status(500).json({ error: 'Error al insertar' });
-      });
-  },*/
-
+    
     // Método update en la aplicación que llama a la API de Mongoose
     update(req, res) {
         let datos = req.body;
